@@ -6,6 +6,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import { history } from "../redux/ConfigureStore";
 import TravelList from "../components/OtherUserPage/TravelList";
+import { Helmet } from "react-helmet";
 
 const OtherUserPage = (props) => {
   const dispatch = useDispatch();
@@ -51,6 +52,12 @@ const OtherUserPage = (props) => {
 
   return (
     <Container>
+      <Helmet>
+        <title>짜여 : 프로필</title>
+        <meta property="og:title" content="짜여 : 프로필" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Top>
         <CancleBtn
           onClick={() => {

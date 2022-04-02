@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Contents from "../components/AddPlan/Contents";
+import { Helmet } from "react-helmet";
 
 const AddPlan = (props) => {
   const { history } = props;
@@ -8,6 +9,12 @@ const AddPlan = (props) => {
 
   return (
     <React.Fragment>
+      <Helmet>
+        <title>짜여 : 여행기 작성</title>
+        <meta property="og:title" content="짜여 : 여행기 작성" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Container>
         <Top>
           <CancleBtn

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import ClearIcon from "@mui/icons-material/Clear";
 import { actionCreators as mypageActions } from "../redux/modules/mypage";
+import { Helmet } from "react-helmet";
 
 const MypageProUp = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,12 @@ const MypageProUp = () => {
 
   return (
     <MypageCon>
+      <Helmet>
+        <title>짜여 : 프로필 수정</title>
+        <meta property="og:title" content="짜여 : 프로필 수정" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Header title="프로필 수정" showBack={true} />
       <UserCon>
         <Label htmlFor="ex_file">

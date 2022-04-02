@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Header from "../components/Mypage/Header";
 import Switch from "../components/Mypage/Switch";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/ConfigureStore";
+import { Helmet } from "react-helmet";
 
 const MyPage = (props) => {
   const dispatch = useDispatch();
@@ -16,6 +17,12 @@ const MyPage = (props) => {
 
   return (
     <MypageCon>
+      <Helmet>
+        <title>짜여 : 마이페이지</title>
+        <meta property="og:title" content="짜여 : 마이페이지" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Header />
       <UserCon>
         {checkUser.userImg ? (
@@ -130,9 +137,11 @@ const MyPage = (props) => {
           </svg>
         </ListItem>
         <UseMethod
-        onClick={()=>{
-          window.open("https://spectacled-socks-6a6.notion.site/064665c9cbd04512b444aaaa8ee48691")
-        }}
+          onClick={() => {
+            window.open(
+              "https://spectacled-socks-6a6.notion.site/064665c9cbd04512b444aaaa8ee48691"
+            );
+          }}
         >
           짜여 사용 방법 보러가기 >
         </UseMethod>
@@ -140,7 +149,6 @@ const MyPage = (props) => {
           알림 설정
           <Switch />
         </ListItem3> */}
-    
       </ListCon>
     </MypageCon>
   );
@@ -152,14 +160,14 @@ const UseMethod = styled.div`
   align-items: center;
   padding: 0px 24px;
   margin-top: 16px;
-  color: #4E49E2;
+  color: #4e49e2;
   width: 100%;
   height: 54px;
-  border: 1px solid #4E49E2;
+  border: 1px solid #4e49e2;
   box-sizing: border-box;
   border-radius: 4px;
   cursor: pointer;
-` 
+`;
 const MypageCon = styled.div`
   width: 100%;
   height: 92%;
