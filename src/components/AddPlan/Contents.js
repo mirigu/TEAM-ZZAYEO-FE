@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as planActions } from "../../redux/modules/plan";
+import { actionCreators as styleActions } from "../../redux/modules/style";
 
 import moment from "moment";
 import { addDays } from "date-fns";
@@ -11,6 +12,9 @@ import DateModal from "./DateModal";
 
 const Contents = (props) => {
   const dispatch = useDispatch();
+
+  const style = useSelector((state) => state.style.style);
+
   const { today } = props;
 
   //여행제목 값 가져오기
@@ -78,7 +82,6 @@ const Contents = (props) => {
     "호캉스",
     "자연친화",
   ];
-  const [clickedTripstyle, changeTripstyle] = React.useState(null);
 
   const createPlan = () => {
     if (titleInput === "") {
@@ -93,7 +96,7 @@ const Contents = (props) => {
       window.alert("누구랑 여행 했는지 선택해주세요!");
       return;
     }
-    if (clickedTripstyle === null) {
+    if (style === null) {
       window.alert("여행 스타일을 선택해주세요!");
       return;
     }
@@ -103,7 +106,7 @@ const Contents = (props) => {
       withlist: withList[clickedWithList],
       startDate: moment(state[0].startDate).format("YYYY-MM-DD"),
       endDate: moment(state[0].endDate).format("YYYY-MM-DD"),
-      style: tripStyle[clickedTripstyle],
+      style: style,
     };
     dispatch(planActions.createPlanDB(plan));
   };
@@ -118,6 +121,7 @@ const Contents = (props) => {
             placeholder="제목을 입력해주세요"
             onChange={(e) => {
               setTitleInput(e.target.value);
+              dispatch(styleActions.setStyle([]));
             }}
             maxLength="25"
           />
@@ -200,12 +204,18 @@ const Contents = (props) => {
               <li
                 key={i}
                 onClick={() => {
-                  changeTripstyle(i);
+                  dispatch(styleActions.setStyle(tripStyle[i]));
+                  if (style.indexOf(tripStyle[i]) !== -1) {
+                    dispatch(
+                      styleActions.deleteStyle(style.indexOf(tripStyle[i]))
+                    );
+                  }
                 }}
                 style={{
                   backgroundColor:
-                    i === clickedTripstyle ? "#4E49E2" : "#F4F4F4",
-                  color: i === clickedTripstyle ? "#FFFFFF" : "#9E9E9E",
+                    style.indexOf(tripStyle[i]) !== -1 ? "#4E49E2" : "#F4F4F4",
+                  color:
+                    style.indexOf(tripStyle[i]) !== -1 ? "#FFFFFF" : "#9E9E9E",
                 }}
               >
                 {l}

@@ -3,27 +3,27 @@ import styled from "styled-components";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as planActions } from "../../redux/modules/plan";
+import { actionCreators as styleActions } from "../../redux/modules/style";
 
 import moment from "moment";
 import { addDays } from "date-fns";
 
 import DateModal from "./DateModal";
-import { Co2Sharp } from "@mui/icons-material";
 
 const EditContents = (props) => {
   const dispatch = useDispatch();
 
   const planId = useSelector((store) => store.plan.planId);
   const myPlan = useSelector((state) => state.plan.myPlan);
+  const style = useSelector((state) => state.style.style);
 
   const { today } = props;
-  
+
   React.useEffect(() => {
     dispatch(planActions.getdayPlanDB(planId));
 
     setTitleInput(myPlan?.title);
   }, []);
-
 
   //여행제목 값 가져오기
   const [titleInput, setTitleInput] = useState("");
@@ -36,7 +36,6 @@ const EditContents = (props) => {
       key: "selection",
     },
   ]);
-
 
   const [msg, setMsg] = React.useState("날짜를 선택해주세요.");
   const [dateShowModal, setDateShowModal] = React.useState(false);
@@ -52,18 +51,17 @@ const EditContents = (props) => {
     setState(state);
     setMsg(
       moment(state[0].startDate).format("YYYY.MM.DD") +
-      "-" +
-      moment(state[0].endDate).format("MM.DD")
+        "-" +
+        moment(state[0].endDate).format("MM.DD")
     );
   };
 
-  React.useEffect(() => { 
+  React.useEffect(() => {
     setMsg(
       moment(state[0].startDate).format("YYYY.MM.DD") +
-      "-" +
-      moment(state[0].endDate).format("MM.DD")
+        "-" +
+        moment(state[0].endDate).format("MM.DD")
     );
-
   }, [state]);
 
   //어디로
@@ -98,7 +96,6 @@ const EditContents = (props) => {
     "호캉스",
     "자연친화",
   ];
-  const [clickedTripstyle, changeTripstyle] = React.useState(null);
 
   const editPlan = () => {
     if (titleInput === "") {
@@ -113,7 +110,7 @@ const EditContents = (props) => {
       window.alert("누구랑 여행 했는지 선택해주세요!");
       return;
     }
-    if (clickedTripstyle === null) {
+    if (style === null) {
       window.alert("여행 스타일을 선택해주세요!");
       return;
     }
@@ -123,11 +120,10 @@ const EditContents = (props) => {
       withlist: withList[clickedWithList],
       startDate: moment(state[0].startDate).format("YYYY-MM-DD"),
       endDate: moment(state[0].endDate).format("YYYY-MM-DD"),
-      style: tripStyle[clickedTripstyle],
+      style: style,
     };
     dispatch(planActions.EditPlanDB(plan, planId));
   };
-
 
   //자동 클릭
   const whereRef = React.useRef([]);
@@ -137,19 +133,14 @@ const EditContents = (props) => {
   useEffect(() => {
     whereRef.current.forEach((v, i) => {
       if (v.id === myPlan.destination) {
-        v.click()
+        v.click();
       }
-    })
+    });
     withwhoRef.current.forEach((v, i) => {
       if (v.id === myPlan.withlist[0]) {
-        v.click()
+        v.click();
       }
-    })
-    styleRef.current.forEach((v, i) => {
-      if (v.id === myPlan.style[0]) {
-        v.click()
-      }
-    })
+    });
   }, []);
 
   return (
@@ -233,16 +224,20 @@ const EditContents = (props) => {
           {tripStyle.map((l, i) => {
             return (
               <li
-                ref={(el) => (styleRef.current[i] = el)}
-                id={l}
                 key={i}
                 onClick={() => {
-                  changeTripstyle(i);
+                  dispatch(styleActions.setStyle(tripStyle[i]));
+                  if (style.indexOf(tripStyle[i]) !== -1) {
+                    dispatch(
+                      styleActions.deleteStyle(style.indexOf(tripStyle[i]))
+                    );
+                  }
                 }}
                 style={{
                   backgroundColor:
-                    i === clickedTripstyle ? "#4E49E2" : "#F4F4F4",
-                  color: i === clickedTripstyle ? "#FFFFFF" : "#9E9E9E",
+                    style.indexOf(tripStyle[i]) !== -1 ? "#4E49E2" : "#F4F4F4",
+                  color:
+                    style.indexOf(tripStyle[i]) !== -1 ? "#FFFFFF" : "#9E9E9E",
                 }}
               >
                 {l}
