@@ -85,10 +85,12 @@ const Search = (props) => {
                   <span>"{keyword}"</span>에 대한 검색 결과입니다.
                 </p>
               </SearchKeword>
-              {feed.map((l, i) => {
-                return <SearchList key={i} {...l} />;
-              })}
-              <div ref={pageEnd}></div>
+              <List>
+                {feed.map((l, i) => {
+                  return <SearchList key={i} {...l} />;
+                })}
+                <div ref={pageEnd}></div>
+              </List>
             </>
           ) : (
             <>
@@ -123,7 +125,7 @@ const Search = (props) => {
 };
 
 const Container = styled.div`
-  position: relative;
+  position: absolute;
   width: 100%;
   max-width: 420px;
   height: 93.7%;
@@ -135,6 +137,8 @@ const Container = styled.div`
 `;
 
 const SearchKeword = styled.div`
+  position: relative;
+  top: 56px;
   font-family: "Roboto", sans-serif;
   margin: 0px 24px;
 
@@ -144,8 +148,9 @@ const SearchKeword = styled.div`
     line-height: 25px;
   }
 `;
+
 const Div = styled.div`
-  height: 80%;
+  height: 93.7%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -156,6 +161,11 @@ const Div = styled.div`
     font-size: 16px;
     line-height: 23px;
   }
+`;
+
+const List = styled.div`
+  position: relative;
+  top: 56px;
 `;
 
 export default Search;

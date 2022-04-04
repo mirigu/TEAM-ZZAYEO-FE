@@ -104,11 +104,17 @@ const Container = styled.div`
 `;
 
 const Top = styled.div`
+  position: fixed;
   height: 56px;
+  width: 100%;
+  max-width: 420px;
   padding-left: 24px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  box-sizing: border-box;
+  z-index: 1;
+  background-color: white;
 `;
 
 const TText = styled.div`
@@ -118,6 +124,8 @@ const TText = styled.div`
 `;
 
 const Bottom = styled.div`
+  position: relative;
+  top: 56px;
   display: flex;
   flex-direction: column;
   width: 100%;

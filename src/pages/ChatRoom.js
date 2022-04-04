@@ -244,7 +244,7 @@ const ChatBody = styled.div`
   position: absolute;
   width: 100%;
   height: calc(100% - 112px);
-  top: 56px
+  top: 56px;
   display: flex;
   flex-direction: column;
   background-color: #f5f5f5;

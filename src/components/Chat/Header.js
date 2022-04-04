@@ -40,25 +40,27 @@ Header.defaultProps = {
 };
 
 const HeaderCon = styled.div`
-  /* position: absolute; */
-  /* top: 0; */
-  width: 100%;
-  background-color: white;
+  position: fixed;
   height: 56px;
+  width: 100%;
+  max-width: 420px;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
+  background-color: white;
+  z-index: 1;
 `;
 
 const Text = styled.div`
   display: flex;
-  padding-left: 16px;
+  padding-left: 24px;
 
   font-weight: 700;
   font-size: 18px;
-  /* line-height: 24px; */
   color: #222b45;
 
   svg {
+    margin-left: -8px;
     margin-right: 16px;
   }
 `;

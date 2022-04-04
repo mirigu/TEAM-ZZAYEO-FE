@@ -139,11 +139,17 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
+  position: fixed;
   height: 56px;
+  width: 100%;
+  max-width: 420px;
   padding-left: 24px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  box-sizing: border-box;
+  background-color: white;
+  z-index: 1;
 `;
 
 const HeaderTitle = styled.div`
@@ -153,6 +159,8 @@ const HeaderTitle = styled.div`
 `;
 
 const Contents = styled.div`
+  position: relative;
+  top: 56px;
   display: flex;
   flex-direction: column;
   width: 100%;
