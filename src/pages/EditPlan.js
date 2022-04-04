@@ -1,16 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import EditContents from "../components/AddPlan/EditContents";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 
 const EditPlan = (props) => {
   const { history } = props;
-  
+
   const myPlan = useSelector((state) => state.plan.myPlan);
   let today = new Date();
 
   return (
     <React.Fragment>
+      <Helmet>
+        <title>짜여 : 여행기 수정</title>
+        <meta property="og:title" content="짜여 : 여행기 수정" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Container>
         <Top>
           <CancleBtn

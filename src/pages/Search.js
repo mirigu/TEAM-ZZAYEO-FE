@@ -1,6 +1,4 @@
-import React, { useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as planActions } from "../redux/modules/plan";
+import React from "react";
 import styled from "styled-components";
 import Searchbar from "../components/Search/Searchbar";
 import SearchList from "../components/Search/SearchList";
@@ -8,18 +6,14 @@ import queryString from "query-string";
 import { useLocation } from "react-router";
 import { ReactComponent as SvgImg } from "../shared/svg/img-none.svg";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const Search = (props) => {
-  const dispatch = useDispatch();
-
   const location = useLocation();
 
   const query = location.search;
   const search = queryString.parse(window.location.search);
   const keyword = search.query;
-
-  const searchList = useSelector((store) => store.plan.search_list.plans);
-  const Endpage = useSelector((store) => store.plan.search_list.endPage);
 
   const [feed, setFeed] = React.useState([]);
   const [pageNumber, setPageNumber] = React.useState(1);
@@ -72,6 +66,12 @@ const Search = (props) => {
   if (query) {
     return (
       <React.Fragment>
+        <Helmet>
+          <title>짜여 : 검색</title>
+          <meta property="og:title" content="짜여 : 검색" />
+          <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+          <meta property="og:image" content="/images/192x192.png" />
+        </Helmet>
         <Container>
           <Searchbar
             query={query}
@@ -85,10 +85,12 @@ const Search = (props) => {
                   <span>"{keyword}"</span>에 대한 검색 결과입니다.
                 </p>
               </SearchKeword>
-              {feed.map((l, i) => {
-                return <SearchList key={i} {...l} />;
-              })}
-              <div ref={pageEnd}></div>
+              <List>
+                {feed.map((l, i) => {
+                  return <SearchList key={i} {...l} />;
+                })}
+                <div ref={pageEnd}></div>
+              </List>
             </>
           ) : (
             <>
@@ -105,6 +107,12 @@ const Search = (props) => {
 
   return (
     <React.Fragment>
+      <Helmet>
+        <title>짜여 : 검색</title>
+        <meta property="og:title" content="짜여 : 검색" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Container>
         <Searchbar query={query} />
         <Div>
@@ -117,7 +125,7 @@ const Search = (props) => {
 };
 
 const Container = styled.div`
-  position: relative;
+  position: absolute;
   width: 100%;
   max-width: 420px;
   height: 93.7%;
@@ -129,6 +137,8 @@ const Container = styled.div`
 `;
 
 const SearchKeword = styled.div`
+  position: relative;
+  top: 56px;
   font-family: "Roboto", sans-serif;
   margin: 0px 24px;
 
@@ -138,8 +148,9 @@ const SearchKeword = styled.div`
     line-height: 25px;
   }
 `;
+
 const Div = styled.div`
-  height: 80%;
+  height: 93.7%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,6 +161,11 @@ const Div = styled.div`
     font-size: 16px;
     line-height: 23px;
   }
+`;
+
+const List = styled.div`
+  position: relative;
+  top: 56px;
 `;
 
 export default Search;

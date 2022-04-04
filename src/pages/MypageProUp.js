@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import ClearIcon from "@mui/icons-material/Clear";
 import { actionCreators as mypageActions } from "../redux/modules/mypage";
+import { Helmet } from "react-helmet";
 
 const MypageProUp = () => {
   const dispatch = useDispatch();
@@ -70,49 +71,57 @@ const MypageProUp = () => {
 
   return (
     <MypageCon>
+      <Helmet>
+        <title>짜여 : 프로필 수정</title>
+        <meta property="og:title" content="짜여 : 프로필 수정" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Header title="프로필 수정" showBack={true} />
-      <UserCon>
-        <Label htmlFor="ex_file">
-          {myPreview ? (
-            <UserImg userImg={myPreview} />
-          ) : (
-            <UserImg userImg={checkUser.userImg} />
-          )}
-        </Label>
-        <FileInput
-          id="ex_file"
-          accept="image/jpg, image/png, image/jpeg, image/gif"
-          type="file"
-          onChange={selectFile}
-          ref={fileRef}
-        />
-      </UserCon>
+      <Contents>
+        <UserCon>
+          <Label htmlFor="ex_file">
+            {myPreview ? (
+              <UserImg userImg={myPreview} />
+            ) : (
+              <UserImg userImg={checkUser.userImg} />
+            )}
+          </Label>
+          <FileInput
+            id="ex_file"
+            accept="image/jpg, image/png, image/jpeg, image/gif"
+            type="file"
+            onChange={selectFile}
+            ref={fileRef}
+          />
+        </UserCon>
 
-      <InputBar>
-        <InputRe
-          placeholder="닉네임을 입력해주세요."
-          value={upNickName ? upNickName : ""}
-          onChange={(e) => setNickName(e.target.value)}
-          maxLength="10"
-        />
-        <ClearIconRe onClick={() => setNickName("")} />
-      </InputBar>
-      <Text>
-        <ErrorOutlineOutlinedIcon />
-        닉네임은 한글, 영어, 숫자로 10자까지 입력해주세요.
-      </Text>
+        <InputBar>
+          <InputRe
+            placeholder="닉네임을 입력해주세요."
+            value={upNickName ? upNickName : ""}
+            onChange={(e) => setNickName(e.target.value)}
+            maxLength="10"
+          />
+          <ClearIconRe onClick={() => setNickName("")} />
+        </InputBar>
+        <Text>
+          <ErrorOutlineOutlinedIcon />
+          닉네임은 한글, 영어, 숫자로 10자까지 입력해주세요.
+        </Text>
 
-      <BtnCon>
-        <SaveBtn
-          style={{
-            backgroundColor:
-              upNickName && upNickName.length !== 0 ? "#4E49E2" : null,
-          }}
-          onClick={userInfoSave}
-        >
-          저장하기
-        </SaveBtn>
-      </BtnCon>
+        <BtnCon>
+          <SaveBtn
+            style={{
+              backgroundColor:
+                upNickName && upNickName.length !== 0 ? "#4E49E2" : null,
+            }}
+            onClick={userInfoSave}
+          >
+            저장하기
+          </SaveBtn>
+        </BtnCon>
+      </Contents>
     </MypageCon>
   );
 };
@@ -134,7 +143,7 @@ const FileInput = styled.input`
 
 const MypageCon = styled.div`
   width: 100%;
-  height: 92%;
+  height: 93.7%;
   padding-bottom: 25px;
   box-sizing: border-box;
   max-width: 420px;
@@ -142,6 +151,11 @@ const MypageCon = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const Contents = styled.div`
+  position: relative;
+  top: 56px;
 `;
 
 const UserCon = styled.div`

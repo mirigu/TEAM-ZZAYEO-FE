@@ -5,6 +5,7 @@ import { KAKAO_AUTH_URL } from "../shared/Auth";
 import { ReactComponent as CharactersImg } from "../shared/svg/img_splash_cha.svg";
 import { ReactComponent as CiImg } from "../shared/svg/img_splash_bi.svg";
 import { ReactComponent as CiTextImg } from "../shared/svg/img_splash_text.svg";
+import { Helmet } from "react-helmet";
 
 import Mypage from "./MyPage";
 
@@ -18,6 +19,12 @@ const Login = (props) => {
   } else {
     return (
       <LoginCon>
+        <Helmet>
+          <title>짜여 : 로그인</title>
+          <meta property="og:title" content="짜여 : 로그인" />
+          <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+          <meta property="og:image" content="/images/192x192.png" />
+        </Helmet>
         <BtnBox>
           <div>
             <CharactersImg />

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import Header from "../components/Chat/Header";
 import Onechat from "../components/Chat/Onechat";
-import { history } from "../redux/ConfigureStore";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
 import { ReactComponent as SvgImg } from "../shared/svg/img-none.svg";
+import { Helmet } from "react-helmet";
 
 // import io from "socket.io-client";
 
@@ -31,6 +30,12 @@ const ChatList = (props) => {
 
   return (
     <ListContainer>
+      <Helmet>
+        <title>짜여 : 메세지</title>
+        <meta property="og:title" content="짜여 : 메세지" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Header />
       {is_token ? (
         <ListWrap>
@@ -64,16 +69,8 @@ const ChatList = (props) => {
 const ListContainer = styled.div`
   width: 100%;
   height: 93.7%;
-  /* background-color: orange; */
   padding-bottom: 25px;
   box-sizing: border-box;
-  /* border-radius: 10px; */
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const NotMsg = styled.div`
@@ -88,23 +85,10 @@ const NotMsg = styled.div`
 `;
 
 const ListWrap = styled.div`
+  position: relative;
+  top: 56px;
   width: 100%;
-  height: 100%;
-  /* background-color: white; */
 `;
-
-// 컴포넌트에 스타일을 바꾸는방법 괄호안에 컴포넌트를 넣으면된당
-// const TripDestBox = styled(TitleBox)``;
-
-// const ListWrap = styled.div`
-//     width: 100%;
-//     height: 100%;
-//     background-color: white;
-//     overflow-y: scroll;
-//     overflow-x: hidden;
-
-// 컴포넌트에 스타일을 바꾸는방법 괄호안에 컴포넌트를 넣으면된당
-// const TripDestBox = styled(TitleBox)``;
 
 const OneChatWrap = styled.div`
   padding: 0 15px;

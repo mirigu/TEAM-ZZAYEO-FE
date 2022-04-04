@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
-import instance from "../shared/Request";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as planActions } from "../redux/modules/plan";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -7,13 +6,9 @@ import styled from "styled-components";
 import MainBookMarkList from "../components/Main/MainBookMarkList";
 import MainUserpickList from "../components/Main/MainUserpickList";
 import MainTopTravelList from "../components/Main/MainTopTravelList";
-import MainTravelList from "../components/Main/MainTravelList";
-import Loader from "../components/Main/Loader";
-import Filter from "../components/Main/Filter";
-import { useLocation } from "react-router";
 import HeaderBar from "../components/Main/HeaderBar";
 import Banner from "../components/Main/Banner";
-import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const Main = (props) => {
   const is_token = localStorage.getItem("token") ? true : false;
@@ -33,6 +28,12 @@ const Main = (props) => {
   if (is_token) {
     return (
       <Container>
+        <Helmet>
+          <title>짜여</title>
+          <meta property="og:title" content="짜여" />
+          <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+          <meta property="og:image" content="/images/192x192.png" />
+        </Helmet>
         <HeaderBar />
         <Banner />
         <Div>
