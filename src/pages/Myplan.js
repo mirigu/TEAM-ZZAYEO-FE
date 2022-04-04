@@ -22,12 +22,12 @@ const Myplan = (props) => {
   }, [dispatch]);
 
   const onAddPlan = () => {
-    // if (is_token) {
-    history.push("/addplan");
-    dispatch(styleActions.resetStyle([]));
-    // }
-    // window.alert("로그인 후 이용가능합니다.");
-    // history.push("/login");
+    if (is_token) {
+      history.push("/addplan");
+      dispatch(styleActions.resetStyle([]));
+    }
+    window.alert("로그인 후 이용가능합니다.");
+    history.push("/login");
   };
 
   return (
