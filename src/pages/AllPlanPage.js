@@ -6,6 +6,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import Filter from "../components/AllPlanPage/Filter";
 import TravelList from "../components/AllPlanPage/TravelList";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const AllPlanPage = (props) => {
   const token = localStorage.getItem("token");
@@ -29,7 +30,6 @@ const AllPlanPage = (props) => {
   const [loading, setLoading] = React.useState(false);
   const [endPage, setEndPage] = React.useState(0);
   const pageEnd = React.useRef();
- ;
   // pageNumber가 바뀔때마다 실행
   React.useEffect(() => {
     if (endPage !== 0 && pageNumber > endPage) {
@@ -64,7 +64,8 @@ const AllPlanPage = (props) => {
           setFeed((prev) => [...prev, ...res.data.plans]);
           setEndPage(res.data.endPage);
         });
-    }setLoading(true);
+    }
+    setLoading(true);
   };
 
   // loading이 바뀔때마다 실행
@@ -89,6 +90,12 @@ const AllPlanPage = (props) => {
 
   return (
     <React.Fragment>
+      <Helmet>
+        <title>짜여 : 전체 여행</title>
+        <meta property="og:title" content="짜여 : 전체 여행" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Container>
         <Header ref={scroll}>
           <HeaderTitle>전체 여행</HeaderTitle>

@@ -5,8 +5,8 @@ import { actionCreators as planActions } from "../redux/modules/plan";
 import BeforeRegister from "../components/Mypaln/BeforeRegister";
 import AfterRegister from "../components/Mypaln/AfterRegister";
 import Filter from "../components/Mypaln/Filter";
-import { useLocation } from "react-router";
 import queryString from "query-string";
+import { Helmet } from "react-helmet";
 
 const Myplan = (props) => {
   const dispatch = useDispatch();
@@ -30,6 +30,12 @@ const Myplan = (props) => {
 
   return (
     <React.Fragment>
+      <Helmet>
+        <title>짜여 : 여행기 작성</title>
+        <meta property="og:title" content="짜여 : 여행기 작성" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Container>
         <Top>
           <TText>여행기 작성</TText>

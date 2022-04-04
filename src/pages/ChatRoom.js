@@ -1,14 +1,14 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import SendIcon from "@mui/icons-material/Send";
 import Header from "../components/Chat/Header";
-import "moment/locale/ko";
 import moment from "moment";
+import "moment/locale/ko";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 import { history } from "../redux/ConfigureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
+import { Helmet } from "react-helmet";
 
 const ChatRoom = (props) => {
   const dispatch = useDispatch();
@@ -19,15 +19,11 @@ const ChatRoom = (props) => {
 
   const roomChatData = useSelector((state) => state.chat.chatRoom_list);
 
-
-;
   // 보내려는메세지
-  const [curMsg, setCurMsg] = useState("");
+  const [curMsg, setCurMsg] = React.useState("");
   // 채팅방메세지리스트
-  const [msgList, setMessageList] = useState([]);
+  const [msgList, setMessageList] = React.useState([]);
   let time = moment().format("LT");
-
-
 
   // 비동기로 만들어서 메시지가 실제로 업데이트를 할 때까지 기다리도록 한다.
   const sendMessage = async () => {
@@ -45,7 +41,6 @@ const ChatRoom = (props) => {
 
       // 서버에 메시지 데이터 전송
       await socket.emit("room", msgData);
-
     }
 
     setCurMsg("");
@@ -76,14 +71,12 @@ const ChatRoom = (props) => {
     });
 
     socket?.on("join", (data) => {
-
       if (data === roomData.curUserInfo.snsId) {
         dispatch(chatActions.getChatRoomListFB(roomData.user.snsId));
       }
     });
 
     return () => {
-
       const room = {
         fromSnsId: roomData.curUserInfo.snsId,
         toSnsId: roomData.user.snsId,
@@ -111,6 +104,12 @@ const ChatRoom = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>짜여 : 메세지</title>
+        <meta property="og:title" content="짜여 : 메세지" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <RoomContainer>
         <Header
           title={roomData.user.nickname}

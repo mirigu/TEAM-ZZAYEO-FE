@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import WritePlanMap from "../components/WritePlan/Map/WritePlanMap";
 import DetailDay from "../components/MainDetailPage/DetailDay";
-import DetailDayhide from "../components/MainDetailPage/DetailDayhide";
 import Header from "../components/MainDetailPage/Header";
 import { Collapse } from "@mui/material";
 
@@ -10,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as planActions } from "../redux/modules/plan";
 import CommentList from "../components/Comment/CommentList";
 import Thumbnail from "../components/MainDetailPage/Thumbnail";
+import { Helmet } from "react-helmet";
 
 const MainDetailPage = (props) => {
   const dispatch = useDispatch();
@@ -65,6 +65,12 @@ const MainDetailPage = (props) => {
   if (plans?.userId?.email === userId) {
     return (
       <Container>
+        <Helmet>
+          <title>짜여 : 여행기</title>
+          <meta property="og:title" content="짜여 : 여행기" />
+          <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+          <meta property="og:image" content="/images/192x192.png" />
+        </Helmet>
         <Header {...plans} />
         <TripDestBox>
           <Div>
@@ -162,6 +168,12 @@ const MainDetailPage = (props) => {
 
   return (
     <Container>
+      <Helmet>
+        <title>짜여 : 여행기</title>
+        <meta property="og:title" content="짜여 : 여행기" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Header {...plans} />
       <Collapse in={isChecked}>
         <WritePlanMap {...plans} />
@@ -230,7 +242,7 @@ const ToggleBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  border-top: 1px solid #E0E0E0;
+  border-top: 1px solid #e0e0e0;
 `;
 
 const ToogleBtn = styled.div`

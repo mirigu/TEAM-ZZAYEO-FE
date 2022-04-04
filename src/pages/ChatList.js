@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import Header from "../components/Chat/Header";
 import Onechat from "../components/Chat/Onechat";
-import { history } from "../redux/ConfigureStore";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
 import { ReactComponent as SvgImg } from "../shared/svg/img-none.svg";
+import { Helmet } from "react-helmet";
 
 // import io from "socket.io-client";
 
@@ -31,6 +30,12 @@ const ChatList = (props) => {
 
   return (
     <ListContainer>
+      <Helmet>
+        <title>짜여 : 메세지</title>
+        <meta property="og:title" content="짜여 : 메세지" />
+        <meta property="og:description" content="우리 함께 여행 짜여✈️" />
+        <meta property="og:image" content="/images/192x192.png" />
+      </Helmet>
       <Header />
       {is_token ? (
         <ListWrap>
