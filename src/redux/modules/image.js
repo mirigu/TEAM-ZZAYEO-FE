@@ -12,13 +12,14 @@ const IMAGE_URL = "IMAGEURL";
 const DELETE_IMAGE = "DELETEIMAGE";
 const INITIAL_IMAGE = "INITIALIMAGE";
 const THUMBNAIL_URL = "THUMBNAIL_URL";
-const INITIAL_DB_IMAGE = "INITIAL_DB_IMAGE"
-
+const INITIAL_DB_IMAGE = "INITIAL_DB_IMAGE";
 
 // action creators
 const uploading = createAction(UPLOADING, (uploading) => ({ uploading }));
 const setPreview = createAction(SET_PREVIEW, (preview) => ({ preview }));
-const preSetPreview = createAction(PRE_SET_PREVIEW, (pre_preview) => ({ pre_preview }));
+const preSetPreview = createAction(PRE_SET_PREVIEW, (pre_preview) => ({
+  pre_preview,
+}));
 const deletePreview = createAction(DELETE_PREVIEW, (index) => ({ index }));
 const deletePrePreview = createAction(DELETE_PRE_PREVIEW, (i) => ({ i }));
 const initialPreview = createAction(INITIAL_PREVIEW, (initial) => ({
@@ -31,7 +32,10 @@ const thumbnailURL = createAction(THUMBNAIL_URL, (thumbnailURL) => ({
 }));
 const deleteImage = createAction(DELETE_IMAGE, (index) => ({ index }));
 const initialImage = createAction(INITIAL_IMAGE, (initial) => ({ initial }));
-const initialdbimage = createAction(INITIAL_DB_IMAGE, (initial) => ({ initial }));
+const initialdbimage = createAction(INITIAL_DB_IMAGE, (initial) => ({
+  initial,
+}));
+
 // initial state
 const initialState = {
   image_url: "",
@@ -54,16 +58,15 @@ export default handleActions(
         draft.preview = [...state.preview, action.payload.preview];
         //기존 배열에 새롭게 추가
 
-      
         // draft.preview = action.payload.preview
       }),
     [PRE_SET_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
-        draft.pre_preview = action.payload.pre_preview
+        draft.pre_preview = action.payload.pre_preview;
       }),
     [INITIAL_DB_IMAGE]: (state, action) =>
       produce(state, (draft) => {
-        draft.pre_preview = action.payload.initial
+        draft.pre_preview = action.payload.initial;
       }),
     [DELETE_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
@@ -83,7 +86,6 @@ export default handleActions(
       }),
     [IMAGE_URL]: (state, action) =>
       produce(state, (draft) => {
-      
         draft.imageURL = [...state.imageURL, action.payload.imageURL];
       }),
 
@@ -106,7 +108,6 @@ export default handleActions(
       }),
     [INITIAL_IMAGE]: (state, action) =>
       produce(state, (draft) => {
-    
         draft.imageURL = action.payload.initial;
       }),
   },

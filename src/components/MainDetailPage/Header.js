@@ -14,6 +14,8 @@ import { history } from "../../redux/ConfigureStore";
 const Header = (props) => {
   const dispatch = useDispatch();
 
+  const style = props.style?.filter((s) => s);
+
   const socket = useSelector((state) => state.chat.instance);
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
@@ -144,14 +146,13 @@ const Header = (props) => {
           {startDate} - {endDate}
         </Day>
         <Info>
-          {props.destination} | {props.withlist} | {props.style}
+          {props.destination} | {props.withlist} |{" "}
+          {style.length - 1 ? style + "" : style + ","}
         </Info>
       </PlanInfo>
     </Container>
   );
 };
-
-
 
 const Container = styled.div`
   position: relative;
