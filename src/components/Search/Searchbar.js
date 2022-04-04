@@ -1,18 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { actionCreators as planActions } from "../../redux/modules/plan";
 import { history } from "../../redux/ConfigureStore";
-import { useLocation } from "react-router";
-import { SnippetFolderRounded } from "@mui/icons-material";
 
 const Searchbar = (props) => {
   const { setFeed, setPageNumber } = props;
-  const dispatch = useDispatch();
-  const location = useLocation();
   const [search, setSearch] = React.useState("도시를 검색해보세요.");
-
-  const query = location.search;
 
   const onKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -42,7 +34,7 @@ const Searchbar = (props) => {
     <Container>
       <BackCon
         onClick={() => {
-          history.goBack();
+          history.push("/");
         }}
       >
         <svg
@@ -63,7 +55,7 @@ const Searchbar = (props) => {
 
       <SearchInput>
         <input
-          type="search"
+          type="text"
           value={search}
           placeholder="도시를 검색해보세요."
           onKeyPress={onKeyPress}
@@ -127,11 +119,16 @@ const Searchbar = (props) => {
 };
 
 const Container = styled.div`
+  position: fixed;
   display: flex;
   align-items: center;
-  margin: 24px 16px;
-  width: auto;
-  height: 41px;
+  padding: 8px 16px;
+  width: 100%;
+  max-width: 420px;
+  height: 56px;
+  box-sizing: border-box;
+  background-color: white;
+  z-index: 1;
 `;
 
 const BackCon = styled.div`

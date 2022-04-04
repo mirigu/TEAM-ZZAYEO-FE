@@ -24,9 +24,11 @@ const NoticePage = (props) => {
         <meta property="og:image" content="/images/192x192.png" />
       </Helmet>
       <Header title="알림" showBack={true} />
-      {noticeList.map((item, i) => {
-        return <OneNotice key={item._id} {...item} />;
-      })}
+      <List>
+        {noticeList.map((item, i) => {
+          return <OneNotice key={item._id} {...item} />;
+        })}
+      </List>
     </Container>
   );
 };
@@ -47,4 +49,8 @@ const Container = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+const List = styled.div`
+  position: relative;
+  top: 56px;
 `;
