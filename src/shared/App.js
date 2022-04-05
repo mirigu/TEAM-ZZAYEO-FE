@@ -91,7 +91,6 @@ function App() {
     };
   }, [dispatch]);
 
-  console.log(process.env);
   return (
     <React.Fragment>
       <Fullscreen>
