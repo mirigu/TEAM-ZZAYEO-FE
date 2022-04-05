@@ -21,7 +21,6 @@ const EditContents = (props) => {
 
   React.useEffect(() => {
     dispatch(planActions.getdayPlanDB(planId));
-
     setTitleInput(myPlan?.title);
   }, []);
 
