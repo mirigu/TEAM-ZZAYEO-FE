@@ -25,9 +25,10 @@ const Myplan = (props) => {
     if (is_token) {
       history.push("/addplan");
       dispatch(styleActions.resetStyle([]));
+    } else {
+      window.alert("로그인 후 이용가능합니다.");
+      history.push("/login");
     }
-    window.alert("로그인 후 이용가능합니다.");
-    history.push("/login");
   };
 
   return (

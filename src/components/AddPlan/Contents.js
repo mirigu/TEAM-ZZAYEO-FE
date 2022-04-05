@@ -121,7 +121,6 @@ const Contents = (props) => {
             placeholder="제목을 입력해주세요"
             onChange={(e) => {
               setTitleInput(e.target.value);
-              dispatch(styleActions.setStyle([]));
             }}
             maxLength="25"
           />
@@ -213,7 +212,7 @@ const Contents = (props) => {
                 }}
                 style={{
                   backgroundColor:
-                    style.indexOf(tripStyle[i]) !== -1 ? "#4E49E2" : "#F4F4F4",
+                    style?.indexOf(tripStyle[i]) !== -1 ? "#4E49E2" : "#F4F4F4",
                   color:
                     style.indexOf(tripStyle[i]) !== -1 ? "#FFFFFF" : "#9E9E9E",
                 }}
