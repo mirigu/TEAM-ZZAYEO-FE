@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as planActions } from "../redux/modules/plan";
+import { actionCreators as styleActions } from "../redux/modules/style";
 import BeforeRegister from "../components/Mypaln/BeforeRegister";
 import AfterRegister from "../components/Mypaln/AfterRegister";
 import Filter from "../components/Mypaln/Filter";
@@ -22,7 +23,8 @@ const Myplan = (props) => {
 
   const onAddPlan = () => {
     if (is_token) {
-      return history.push("/addplan");
+      history.push("/addplan");
+      dispatch(styleActions.resetStyle([]));
     }
     window.alert("로그인 후 이용가능합니다.");
     history.push("/login");

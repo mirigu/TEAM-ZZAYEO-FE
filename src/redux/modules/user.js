@@ -27,7 +27,7 @@ const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
     axios
       .get(
-        //`http://54.180.162.220:3001/api/auth/kakao/callback?code=${code}`
+        // `http://54.180.162.220:3001/api/auth/kakao/callback?code=${code}`
         `https://stgon.shop/api/auth/kakao/callback?code=${code}`
       )
       .then((res) => {
@@ -60,7 +60,6 @@ const checkUserDB = () => {
         },
       })
       .then((res) => {
-
         let userId = res.data.userId;
         let nickname = res.data.nickname;
         let userImg = res.data.userImg;
