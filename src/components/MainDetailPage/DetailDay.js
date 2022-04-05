@@ -184,6 +184,10 @@ const MemoBox = styled.div`
   margin-top: 16px;
   padding: 16px 17px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.14);
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Memo = styled.div`
@@ -193,6 +197,7 @@ const Memo = styled.div`
   font-size: 12px;
   line-height: 16px;
   white-space: pre-wrap;
+  
 `;
 
 const TabMenu = styled.div`

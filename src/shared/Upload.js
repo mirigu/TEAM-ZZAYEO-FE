@@ -35,6 +35,7 @@ const Upload = (props) => {
     };
     try {
       const compressedFile = await imageCompression(fileSrc, options);
+  
       const myFile = new File([compressedFile], 'image.jpeg', {
         type: compressedFile.type,
       })
@@ -63,7 +64,7 @@ const Upload = (props) => {
         fileURLs[i] = reader.result;
         setTimeout(() => {
           dispatch(imageActions.setPreview(reader.result))
-        }, 1000);
+        }, 500);
 
         // dispatch(imageActions.imageURL(filesArr[i]));
         actionImgCompress(filesArr[i])

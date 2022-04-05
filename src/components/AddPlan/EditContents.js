@@ -30,7 +30,7 @@ const EditContents = (props) => {
 
   //여행 선택일자 가져오기
   const [state, setState] = React.useState([
-    {
+    { 
       startDate: moment(myPlan?.startDate)._d,
       endDate: moment(myPlan?.endDate)._d,
       key: "selection",
