@@ -7,6 +7,7 @@ import { history } from "../../../redux/ConfigureStore";
 
 const Title = (props) => {
   const style = props?.style?.filter((s) => s);
+  console.log()
   const dispatch = useDispatch();
   return (
     <Container>

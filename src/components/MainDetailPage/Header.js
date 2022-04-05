@@ -147,7 +147,7 @@ const Header = (props) => {
         </Day>
         <Info>
           {props.destination} | {props.withlist} |{" "}
-          {style.length - 1 ? style + "" : style + ","}
+          {style && style.length - 1 ? style + "" : style + ", "}
         </Info>
       </PlanInfo>
     </Container>
