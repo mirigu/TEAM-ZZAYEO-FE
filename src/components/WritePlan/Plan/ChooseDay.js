@@ -101,7 +101,6 @@ const ChooseDay = (props) => {
 
           {dayList &&
             dayList[currentTab]?.places.map((v, i) => {
-             
               return (
                 <div key={i} style={{ marginTop: "16px", display: "table" }}>
                   <Line>
@@ -128,11 +127,11 @@ const ChooseDay = (props) => {
                     </div>
                     <PlaceName>{v.placeName}</PlaceName>
                     <Address>주소:{v.address}</Address>
-                    {v.memoText !== "" ?
+                    {v.memoText !== "" ? (
                       <MemoBox>
                         <Memo>{v.memoText}</Memo>
                       </MemoBox>
-                      : null}
+                    ) : null}
                     <SwiperImage image={v.memoImage} />
                   </div>
                 </div>
@@ -216,9 +215,11 @@ const Address = styled.span`
   line-height: 14px;
   margin-top: 6px;
 `;
+
 const MemoBox = styled.div`
   width: 100%;
-  height: 128px;
+  min-height: 128px;
+  height: auto;
   background-color: #ffffff;
   border-radius: 8px;
   box-sizing: border-box;
