@@ -10,7 +10,6 @@ const Detailday = (props) => {
   const dayList = props.days;
   const [currentTab, setCurrentTab] = useState(0);
 
-
   const polyLinedata = useSelector((state) => state.map.polyline);
   const myPlan = useSelector((state) => state.plan.myPlan);
   const userId = localStorage.getItem("userId");
@@ -120,11 +119,11 @@ const Detailday = (props) => {
                   </div>
                   <PlaceName>{v.placeName}</PlaceName>
                   <Address>주소:{v.address}</Address>
-                  {v.memoText !== "" ?
+                  {v.memoText !== "" ? (
                     <MemoBox>
                       <Memo>{v.memoText}</Memo>
-                    </MemoBox> : null
-                  }
+                    </MemoBox>
+                  ) : null}
                   <SwiperImage image={v.memoImage} />
                 </div>
               </div>
@@ -177,7 +176,8 @@ const Address = styled.span`
 
 const MemoBox = styled.div`
   width: 100%;
-  height: 128px;
+  min-height: 128px;
+  height: auto;
   background-color: #ffffff;
   border-radius: 8px;
   box-sizing: border-box;
