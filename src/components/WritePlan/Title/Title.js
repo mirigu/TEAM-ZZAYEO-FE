@@ -27,8 +27,8 @@ const Title = (props) => {
         {props.startDate}~{props.endDate}
       </DateText>
       <DetailText>
-        {props.destination} | {props && props?.withlist} |
-        {props && style?.length - 1 ? style + "" : style + ","}
+        {props.destination} | {props.withlist} |{" "}
+        {style && style?.length - 1 || style?.length === 1 ? style + "" : style + ", "}
       </DetailText>
     </Container>
   );
