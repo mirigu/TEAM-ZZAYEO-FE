@@ -7,13 +7,14 @@ import GetPlan from "../MainDetailPage/GetPlan";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { actionCreators as chatActions } from "../../redux/modules/chat";
+import { actionCreators as planActions } from "../../redux/modules/plan";
 import instance from "../../shared/Request";
 import { history } from "../../redux/ConfigureStore";
 
 const Header = (props) => {
   const dispatch = useDispatch();
 
-  const style = props?.style;
+  const style = props.style?.filter((s) => s);
 
   const socket = useSelector((state) => state.chat.instance);
   const userId = localStorage.getItem("userId");
@@ -21,7 +22,6 @@ const Header = (props) => {
   const startDate = moment(props.startDate).format("YYYY.MM.DD");
   const endDate = moment(props.endDate).format("MM.DD");
   const is_me = props?.userId?.email === userId ? true : false;
-
   const onProfile = (e) => {
     e.stopPropagation();
     if (token) {
@@ -147,7 +147,7 @@ const Header = (props) => {
         </Day>
         <Info>
           {props.destination} | {props.withlist} |{" "}
-          {style?.length - 1 || style?.length === 1 ? style + " " : style + ","}
+          {style && style.length - 1 ? style + "" : style + ", "}
         </Info>
       </PlanInfo>
     </Container>
@@ -264,7 +264,7 @@ const Day = styled.div`
 `;
 
 const Info = styled.div`
-  padding: 0px 24px;
+  padding-left: 24px;
   margin-top: 2px;
   font-weight: 500;
   font-size: 14px;
