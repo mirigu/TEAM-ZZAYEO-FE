@@ -47,7 +47,7 @@ const WritePlanMap = (props) => {
       <div style={{ height: "220px", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{
-            key: "AIzaSyD688QW0Av06YgBIC_XFCTwxAbiNDMsMQA",
+            key: process.env.REACT_APP_GOOGLE_KEY,
             libraries: "places",
             //GoogleMap로드시 라이브러리로 places를 추가
           }}
@@ -79,7 +79,7 @@ const WritePlanMap = (props) => {
           )}
 
           {Markers.length !== 0 && apiReady && googlemaps && (
-           <Fitbound markers={Markers} map={map} maps={googlemaps} />
+            <Fitbound markers={Markers} map={map} maps={googlemaps} />
           )}
         </GoogleMapReact>
       </div>
