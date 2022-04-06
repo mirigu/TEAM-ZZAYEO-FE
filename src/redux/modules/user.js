@@ -93,6 +93,20 @@ const userProfileDB = (userId) => {
   };
 };
 
+//알림권한
+const subSetDB = (pushSubscription) => {
+  return function (dispatch, getState, { history }) {
+    instance
+      .post(`/api/users/subscribe`, { subscribe: pushSubscription })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
+
 //reducer
 export default handleActions(
   {
@@ -127,7 +141,7 @@ const actionCreators = {
   setUserProfile,
   userProfileDB,
   logOut,
-  // naverLogin,
+  subSetDB,
 };
 
 export { actionCreators };

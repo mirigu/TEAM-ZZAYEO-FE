@@ -36,17 +36,7 @@ import ScreenBackground from "../components/ScreenBackground/ScreenBackground";
 import "./App.css";
 
 function App() {
-  // 브라우저에서 알림 허용 차단 창
-  // const isNotificationSupported = "Notification" in window;
-  // if (isNotificationSupported) {
-  //   Notification.requestPermission().then(function (result) {
-  //     if (result === "granted") {
-  //       console.log("[Notification] 허용: ", result);
-  //     } else {
-  //       console.log("[Notification] 차단: ", result);
-  //     }
-  //   });
-  // }
+  const dispatch = useDispatch();
 
   Notification.requestPermission().then((status) => {
     console.log("Notification 상태", status);
@@ -62,8 +52,7 @@ function App() {
             userVisibleOnly: true,
             // push subscription이 유저에게 항상 보이는지 여부. 알림을 숨기는 등 작업이 들어가지는에 대한 여부인데, 크롬에서는 true 밖에 지원안한다.
             // https://developers.google.com/web/fundamentals/push-notifications/subscribing-a-user
-            applicationServerKey:
-              "BAefk2TWsnXitJqLiDIQVaNPVfx7gttnHWu8AXZlqHUx5cQiX-12XzAmM4TScMlP3TZPs5wfkTdY-MrI4nvkwQU", // 발급받은 vapid public key
+            applicationServerKey: process.env.REACT_APP_APPLICATIONSERVERKEY, // 발급받은 vapid public key
           };
 
           return registration.pushManager.subscribe(subscribeOptions);
@@ -71,12 +60,10 @@ function App() {
         .then(function (pushSubscription) {
           // subscription 정보를 저장할 서버로 보낸다.
           console.log("pushSubscription !! ", pushSubscription);
-          // postSubscription(pushSubscription);
+          dispatch(userActions.subSetDB(pushSubscription));
         });
     }
   });
-
-  const dispatch = useDispatch();
 
   React.useEffect(() => {
     const userId = localStorage.getItem("userId");
