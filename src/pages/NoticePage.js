@@ -37,7 +37,7 @@ export default NoticePage;
 
 const Container = styled.div`
   width: 100%;
-  height: 93.7%;
+  height: 100%;
   /* background-color: orange; */
   padding-bottom: 25px;
   box-sizing: border-box;

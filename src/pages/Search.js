@@ -128,7 +128,7 @@ const Container = styled.div`
   position: absolute;
   width: 100%;
   max-width: 420px;
-  height: 93.7%;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   ::-webkit-scrollbar {
