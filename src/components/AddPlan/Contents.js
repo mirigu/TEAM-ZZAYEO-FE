@@ -4,9 +4,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as planActions } from "../../redux/modules/plan";
 import { actionCreators as styleActions } from "../../redux/modules/style";
-
 import moment from "moment";
-import { addDays } from "date-fns";
 
 import DateModal from "./DateModal";
 
@@ -53,7 +51,6 @@ const Contents = (props) => {
   //어디로
   const destList = ["국내", "해외"];
   const [clickedTripDest, changeTripDest] = React.useState(null);
-  //console.log(destList[clickedTripDest]);
 
   const withList = [
     "혼자",
