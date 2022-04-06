@@ -51,6 +51,7 @@ self.addEventListener("fetch", (event) => {
   }
 });
 
+
 //Push Message 수신 이벤트
 self.addEventListener("push", function (event) {
   //Push 정보 조회
@@ -84,3 +85,4 @@ self.addEventListener("notificationclick", function (event) {
     })
   );
 });
+
