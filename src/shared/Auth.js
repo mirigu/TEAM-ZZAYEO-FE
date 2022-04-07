@@ -4,7 +4,7 @@
 const CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID;
 //REDIRECT_URI 주소 백엔드랑 주소일치시키기
 
-const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
+// const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
 
 const REDIRECT_URI =
   //   "http://jjayeo.s3-website.ap-northeast-2.amazonaws.com/api/auth/kakao/callback";
