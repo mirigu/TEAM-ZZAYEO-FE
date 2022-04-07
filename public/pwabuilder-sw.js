@@ -80,8 +80,8 @@ self.addEventListener("notificationclick", function (event) {
       }
       //실행된 브라우저가 없으면 Open
       if (clients.openWindow)
-        return clients.openWindow("https://zzayeo.com/noticepage");
-      // return clients.openWindow("http://localhost:3000/noticepage");
+        // return clients.openWindow("https://zzayeo.com/noticepage");
+      return clients.openWindow("http://localhost:3000/noticepage");
     })
   );
 });
