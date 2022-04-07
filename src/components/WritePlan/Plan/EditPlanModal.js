@@ -42,7 +42,7 @@ const Modalbox = styled(Box)`
 
 export default function BasicModal(props) {
   const { placeId, placesData, planId } = props;
-  console.log(placesData)
+
   const [AmPm, setAmPm] = React.useState("오전");
   const [Hour, setHour] = React.useState("0");
   const [Minute, setMinute] = React.useState("00");

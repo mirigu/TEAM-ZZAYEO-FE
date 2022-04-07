@@ -101,6 +101,7 @@ const ChatRoom = (props) => {
   React.useEffect(() => {
     setMessageList(roomChatData);
   }, [roomChatData]);
+  
 
   return (
     <>
@@ -117,7 +118,7 @@ const ChatRoom = (props) => {
           _onClick={() => history.goBack()}
         />
         <ChatBody>
-          {/* <ScrollToBottomNew className="msg-container"> */}
+          <ScrollToBottomNew className="msg-container">
           {msgList.map((item, i) => {
             return (
               <Message
@@ -183,7 +184,7 @@ const ChatRoom = (props) => {
               </Message>
             );
           })}
-          {/* </ScrollToBottomNew> */}
+          </ScrollToBottomNew>
         </ChatBody>
 
         <InputBar>
@@ -232,12 +233,12 @@ const RoomContainer = styled.div`
     font-size: 25px;
   }
 
-  /* & .msg-container {
+  & .msg-container {
     width: 100%;
-    height: 90%;
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-  } */
+  }
 `;
 
 const ChatBody = styled.div`

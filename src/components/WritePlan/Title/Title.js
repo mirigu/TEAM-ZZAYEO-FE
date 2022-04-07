@@ -6,9 +6,9 @@ import { actionCreators as styleActions } from "../../../redux/modules/style";
 import { history } from "../../../redux/ConfigureStore";
 
 const Title = (props) => {
+  const style = props?.style?.filter((s) => s);
+  console.log()
   const dispatch = useDispatch();
-  const style = props?.style;
-  console.log(style);
   return (
     <Container>
       <TitleText>
@@ -27,8 +27,8 @@ const Title = (props) => {
         {props.startDate}~{props.endDate}
       </DateText>
       <DetailText>
-        {props.destination} | {props && props?.withlist} |{" "}
-        {style?.length - 1 || style?.length === 1 ? style + " " : style + ", "}
+        {props.destination} | {props.withlist} |{" "}
+        {style && style?.length - 1 || style?.length === 1 ? style + "" : style + ", "}
       </DetailText>
     </Container>
   );
