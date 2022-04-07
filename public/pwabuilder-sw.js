@@ -73,14 +73,16 @@ self.addEventListener("notificationclick", function (event) {
   event.waitUntil(
     clients.matchAll({ type: "window" }).then(function (clientList) {
       //실행된 브라우저가 있으면 Focus
+      console.log(clientList);
       for (let i = 0; i < clientList.length; i++) {
         let client = clientList[i];
-        if (client.url === "/" && "focus" in client) return client.focus();
+        if (client.url === "/noticepage" && "focus" in client)
+          return client.focus();
       }
       //실행된 브라우저가 없으면 Open
       if (clients.openWindow)
-        return clients.openWindow("https://zzayeo.com/noticepage");
-      // return clients.openWindow("http://localhost:3000/noticepage");
+        // return clients.openWindow("https://zzayeo.com/noticepage");
+        return clients.openWindow("http://localhost:3000/noticepage");
     })
   );
 });
