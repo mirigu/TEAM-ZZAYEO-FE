@@ -71,6 +71,11 @@ const ListContainer = styled.div`
   height: 93.7%;
   padding-bottom: 25px;
   box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const NotMsg = styled.div`
