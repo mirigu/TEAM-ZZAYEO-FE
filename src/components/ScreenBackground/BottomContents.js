@@ -58,7 +58,7 @@ const BottomContents = (props) => {
             <WayBox>
               {step.map((s, i) => {
                 return (
-                  <Box>
+                  <Box key={1}>
                     <Step>{s.num}</Step>
                     {s.num === "Step 3" ? (
                       <div>
@@ -86,7 +86,7 @@ const BottomContents = (props) => {
             <GuideBox>
               {prise.map((s, i) => {
                 return (
-                  <Box1>
+                  <Box1 key={i}>
                     <Step>{s.priseName}</Step>
                     <Image src={s.image}></Image>
                     <Text1>{s.text}</Text1>
