@@ -61,6 +61,7 @@ self.addEventListener("push", function (event) {
     body: body,
     icon: icon,
     badge: badge,
+    vibrate: [200, 100, 200, 100],
   };
 
   //Notification 출력
