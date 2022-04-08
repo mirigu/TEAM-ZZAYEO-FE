@@ -14,12 +14,15 @@ const AllPlanPage = (props) => {
 
   const scroll = React.useRef(null);
 
-  const executeScroll = () =>
+  const executeScroll = () => {
     scroll.current.scrollIntoView({
       behavior: "smooth",
       block: "end",
       inline: "nearest",
     });
+  };
+
+  React.useEffect(() => console.log(scroll.current), []);
 
   const location = useLocation();
 
@@ -97,9 +100,10 @@ const AllPlanPage = (props) => {
         <meta property="og:image" content="/images/192x192.png" />
       </Helmet>
       <Container>
-        <Header ref={scroll}>
+        <Header>
           <HeaderTitle>전체 여행</HeaderTitle>
         </Header>
+        <div ref={scroll}></div>
         <Contents>
           <Filter setFeed={setFeed} setPageNumber={setPageNumber} />
           {feed.map((l, i) => {
@@ -132,7 +136,7 @@ const Container = styled.div`
   width: 100%;
   height: 93.7%;
   max-width: 420px;
-  overflow: scroll;
+  overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;
   }
